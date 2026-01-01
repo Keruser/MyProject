@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "author": "Final Defense Code",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled",
+      "top": 214.34,
+      "left": -124.57,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo",
+      "top": -98,
+      "left": 134.4,
+      "attrs": { "horn": "single" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer",
+      "top": -120,
+      "left": -60,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_in",
+      "top": 150.2,
+      "left": 153.6,
+      "attrs": { "color": "green", "label": "Entry (IN)" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_out",
+      "top": 217.4,
+      "left": 153.6,
+      "attrs": { "color": "red", "label": "Exit (OUT)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot",
+      "top": 20.2,
+      "left": -124.2,
+      "attrs": { "label": "Servo Control" }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "sw_mode",
+      "top": -62.8,
+      "left": -150.5,
+      "attrs": { "label": "Mode: Auto/Maint" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "oled:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "oled:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled:SDA", "esp:21", "blue", [ "v0" ] ],
+    [ "oled:SCL", "esp:22", "green", [ "v0" ] ],
+    [ "servo:V+", "esp:VIN", "red", [ "v20", "h-40", "v160", "h-100" ] ],
+    [ "servo:GND", "esp:GND.1", "black", [ "v10", "h-30", "v170", "h-90" ] ],
+    [ "servo:PWM", "esp:15", "orange", [ "v0" ] ],
+    [ "buzzer:2", "esp:4", "purple", [ "v20", "h40", "v80" ] ],
+    [ "buzzer:1", "esp:GND.1", "black", [ "v10", "h30", "v120" ] ],
+    [ "btn_in:2.r", "esp:12", "green", [ "h-20", "v-80" ] ],
+    [ "btn_in:1.r", "esp:GND.2", "black", [ "h-40", "v40", "h-80" ] ],
+    [ "btn_out:2.r", "esp:14", "red", [ "h-30", "v-120" ] ],
+    [ "btn_out:1.r", "esp:GND.2", "black", [ "h-50", "v-30", "h-80" ] ],
+    [ "pot:VCC", "esp:3V3", "red", [ "v10", "h40", "v-90" ] ],
+    [ "pot:GND", "esp:GND.1", "black", [ "v20", "h30", "v-80" ] ],
+    [ "pot:SIG", "esp:34", "blue", [ "v30", "h140" ] ],
+    [ "sw_mode:1", "esp:GND.1", "black", [ "v0", "h20", "v60" ] ],
+    [ "sw_mode:2", "esp:27", "gray", [ "v10", "h40", "v110" ] ],
+    [ "sw_mode:3", "esp:3V3", "red", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
