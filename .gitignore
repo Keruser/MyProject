@@ -9,6 +9,7 @@ __pycache__/
 .vs/
 *.sln
 *.suo
+*.sqlite
 
 # 忽略 C语言/单片机 编译生成的垃圾
 *.exe
